@@ -226,12 +226,12 @@ const InboxPage = () => {
         direction: detail.directionName || "RECEIVED",
         prediction: detail.details
           ? {
-              label: detail.details.label,
-              probability: detail.details.probability,
-              prediction: detail.details.prediction,
-              confidenceLevel: detail.details.confidenceLevel,
-              flags: detail.details.details?.flags || {},
-            }
+            label: detail.details.label,
+            probability: detail.details.probability,
+            prediction: detail.details.prediction,
+            confidenceLevel: detail.details.confidenceLevel,
+            flags: detail.details.details?.flags || {},
+          }
           : undefined,
       };
 
@@ -325,11 +325,10 @@ const InboxPage = () => {
             type="button"
             onClick={handleClassifyClick}
             disabled={isGuestSession}
-            className={`relative flex items-center gap-2 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ${
-              isGuestSession
+            className={`relative flex items-center gap-2 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ${isGuestSession
                 ? "text-gray-400 bg-gray-200 cursor-not-allowed"
                 : "text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-            }`}
+              }`}
           >
             {isLoadingClassify && (
               <svg
@@ -360,11 +359,10 @@ const InboxPage = () => {
             type="button"
             onClick={handleSyncClick}
             disabled={isGuestSession}
-            className={`relative flex items-center gap-2 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ${
-              isGuestSession
+            className={`relative flex items-center gap-2 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ${isGuestSession
                 ? "text-gray-400 bg-gray-200 cursor-not-allowed"
                 : "text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-            }`}
+              }`}
           >
             {isLoadingSync && (
               <svg
@@ -462,9 +460,14 @@ const InboxPage = () => {
 
       {selectedEmail && (
         <EmailDetailModal
-          email={{ ...selectedEmail, content: selectedEmail?.content || "" }}
+          email={{
+            ...selectedEmail,
+            content: selectedEmail?.content || "",
+            onDelete: () => handleDeleteEmail(selectedEmail.id),
+            isGuest: isGuestSession,
+          }}
           onClose={() => setSelectedEmail(null)}
-          onDelete={() => handleDeleteEmail(selectedEmail.id)}
+
           markAsUnread={(id: string) => {
             setEmails((prevEmails) =>
               prevEmails.map((email) =>

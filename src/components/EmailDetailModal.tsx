@@ -23,6 +23,8 @@ type Props = {
     date: string;
     isRead: boolean;
     labels: string[];
+    isGuest: boolean;
+    onDelete: (id: string) => void;
 
     // // Thêm các trường liên quan đến phân loại/phân tích email
     // prediction?: string; // Ví dụ: "spam", "phishing", "normal"
@@ -30,6 +32,7 @@ type Props = {
     // warning?: string; // Ví dụ: "This email may be phishing"
   };
   markAsUnread?: (id: string) => void;
+  isGuest: boolean;
 };
 
 export default function EmailDetailModal({

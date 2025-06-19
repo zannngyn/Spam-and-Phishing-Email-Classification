@@ -72,9 +72,8 @@ export function Sidebar({ onCompose, setSearchContent, setIsClassify }: Props) {
       )}
 
       <aside
-        className={`w-64 h-screen overflow-y-auto border-r border-gray-200 bg-gray-50 flex flex-col px-4 py-6 space-y-6 text-sm text-gray-800 fixed top-0 left-0 z-30 transition-transform duration-300 ${
-          showSidebar ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 md:relative`}
+        className={`w-64 h-screen overflow-y-auto border-r border-gray-200 bg-gray-50 flex flex-col px-4 py-6 space-y-6 text-sm text-gray-800 fixed top-0 left-0 z-30 transition-transform duration-300 ${showSidebar ? "translate-x-0" : "-translate-x-full"
+          } md:translate-x-0 md:relative`}
       >
         {/* Nút đóng trên mobile */}
         <div className="md:hidden flex justify-end mb-4">
@@ -89,7 +88,8 @@ export function Sidebar({ onCompose, setSearchContent, setIsClassify }: Props) {
         {/* Thông tin người dùng */}
         <div className="flex items-center gap-3">
           <img
-            src={profileImage}
+            // src={profileImage}
+            src={profileImage || "https://i.pravatar.cc/40"}
             className="rounded-full w-9 h-9"
             alt="avatar"
           />
@@ -177,9 +177,8 @@ function SidebarItem({
   active?: boolean;
   onClick?: () => void;
 }) {
-  const classes = `flex items-center justify-between px-2 py-1 rounded hover:bg-gray-100 ${
-    active ? "bg-gray-100 font-semibold" : ""
-  }`;
+  const classes = `flex items-center justify-between px-2 py-1 rounded hover:bg-gray-100 ${active ? "bg-gray-100 font-semibold" : ""
+    }`;
 
   const content = (
     <div className="flex items-center gap-2">
